@@ -1,0 +1,15 @@
+$tdData = $tdData . "<td>" . id . "</td>" ;
+$tdData = $tdData . "<td>" . acct_no . "</td>" ;
+$tdData = $tdData . "<td>" . acct_type . "</td>" ;
+$tdData = $tdData . "<td>" . provider . "</td>" ;
+$tdData = $tdData . "<td>" . bank . "</td>" ;
+$tdData = $tdData . "<td>" . branch . "</td>" ;
+$tdData = $tdData . "<td>" . city . "</td>" ;
+$tdData = $tdData . "<td>" . short_name . "</td>" ;
+$tdData = $tdData . "<td>" . cvv . "</td>" ;
+$tdData = $tdData . "<td>" . valid_thru . "</td>" ;
+$tdData = $tdData . "<td>" . name_regd . "</td>" ;
+$tdData = $tdData . "<td>" . email_regd . "</td>" ;
+$tdData = $tdData . "<td>" . member_since . "</td>" ;
+$tdData = $tdData . "<td>" . url . "</td>" ;
+$tdData = $tdData . "<td>" . remarks . "</td>";

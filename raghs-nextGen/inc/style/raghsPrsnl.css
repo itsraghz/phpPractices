@@ -1,0 +1,73 @@
+body {
+	font-family: "Lucida Grande", "Trebuchet MS", "Calibri";
+	color: navy;
+	font-size: 12px;
+}
+
+hr {
+	color: maroon;
+}
+
+footer {
+	font: Arial;
+	color: gray;
+}
+
+td {
+    font-size: 11px;
+}
+
+input {
+    font-family: "Verdana";
+    color: blue;
+    font-size: 10px;
+}
+
+input.readonly {
+    color: gray;
+    font-weight: normal;
+}
+
+input.submit {
+    font-family: "Lucida Grande", "Tahoma";
+    font-size: 12px;
+    background-color: green;
+    color: white;
+}
+
+input.reset {
+    font-family: "Lucida Grande", "Tahoma";
+    font-size: 12px;
+    background-color: gray;
+    color: white;
+}
+
+th {
+    font-size: 12px;
+    background-color: slateGray;
+    color: white;
+}
+.tdHeader {
+    background-color: green;
+    color: white;
+    font-size: 13px;
+}
+
+a.tdHeader:link, a.tdHeader:visited {
+    color: white;
+    text-decoration: none;
+    border-bottom: 1px dotted slateGray;
+}
+
+a.tdHeader:hover {
+    color: rgb(80,200,80);
+    border-bottom-color: rgb(80,200,80);
+}
+
+a.grayed {
+    color: slateGray;
+}
+
+span.error {
+    color: red;
+}

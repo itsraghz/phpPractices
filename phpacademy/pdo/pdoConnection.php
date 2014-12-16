@@ -12,7 +12,7 @@
 	$mysql_host = "localhost";
 	$mysql_db = "itsraghz";
 	$mysql_user = "itsraghz";
-	$mysql_pwd = "NJ#76AW2";
+	$mysql_pwd = "<PWD>";
 
     $mysql_user = "root";
     $mysql_pwd = "root";

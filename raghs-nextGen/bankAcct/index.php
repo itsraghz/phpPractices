@@ -11,14 +11,17 @@
  * ===============
  * 1. 22 Nov 2014 Saturday - Initial Version
  * 2. 23 Nov 2014 Sunday - modularized
+ * 3. 06 Dec 2014 Saturday - Added 'Add'
  */
 
 include_once '../inc/header.php';
 
-$itemArray = array("List", "Edit", "Delete");
+$itemArray = array("Add", "List", "Edit", "Delete");
 
 ?>
-    <header><h3>Account / Cards Management</h3></header>
+    <header>
+        <h3>Account / Cards Management</h3>
+    </header>
     <table border="1" cellpadding="5" cellspacing="5">
         <tr>
             <th>Sl #</th>
@@ -32,11 +35,16 @@ $itemArray = array("List", "Edit", "Delete");
         </tr>
         <tr>
             <td>2</td>
+            <td>Add an Account</td>
+            <td><a href="add.php">Link</a></td>
+        </tr>
+        <tr>
+            <td>3</td>
             <td>Edit an Account</td>
             <td><a href="edit.php">Link</a></td>
         </tr>
         <tr>
-            <td>3</td>
+            <td>4</td>
             <td>Delete an Account</td>
             <td><a href="delete.php">Link</a></td>
         </tr>

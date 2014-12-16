@@ -13,7 +13,7 @@
  *
  */
 
-include_once '../inc/header.php';
+require_once '../inc/header.php';
 require_once 'model/BankAcctBO.php';
 require_once 'data/BankAcctDAO.php';
 
@@ -30,8 +30,9 @@ function insertData()
     $bankBO = new BankAcctBO();
     $bankBO->injectFromHttpRequest($_POST);
 
-    //echo "<b>After injection : </b> <br/>";
+    echo "<b>After injection : </b> <br/>";
     //echo "<pre>" , print_r($bankBO) . "</pre>";
+    echo "<pre>" , var_dump($bankBO) . "</pre>";
 
     $bankAcctDAO = new BankAcctDAO();
 
@@ -41,17 +42,16 @@ function insertData()
         $bankBO = $bankAcctDAO->insert($bankBO);
 
     } catch (Exception $e) {
-        echo "<span class='error'>Error occurred. Message -> [" . $e->getMessage() . "]";
+        echo "<span class='error'><b>Error occurred</b>. Message -> [" . $e->getMessage() . "]";
         echo "<br/>";
         $error = 1;
     }
 
-    if ($error == 0) {
-        //echo "<pre>" , print_r($bankBO) . "</pre>";
-
-        //echo "BankBO lastInsertId :: " . $bankBO->Id . "<br/>";
-
-        header('Location: view.php?Id=' . $bankBO->Id);
+    if ($error == 0)
+    {
+        echo "<pre>" , print_r($bankBO) . "</pre>";
+        echo "BankBO lastInsertId :: " . $bankBO->Id . "<br/>";
+        //header('Location: view.php?Id=' . $bankBO->Id);
 
     }
 

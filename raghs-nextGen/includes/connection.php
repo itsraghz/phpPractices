@@ -60,7 +60,7 @@ try {
 
 	$pdo = new PDO('mysql:host=localhost;dbname=itsraghz', 'root','root');
 }catch(PDOException $e) {
-	exit('Database error.');
+	exit('Database error.'. $e->getMessage());
 }
 
 // Sample: $pdo = new PDO('mysql:host=localhost;dbname=<dbName>', '<dbUser>','<dbPwd>');

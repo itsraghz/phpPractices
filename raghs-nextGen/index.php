@@ -4,7 +4,6 @@
 <p>
 	This is the personal application developed in <i>PHP</i> for <i>Raghavan alias Saravanan M.</i>
 </p>
-<br/>
 
 <?php
 
@@ -29,6 +28,8 @@
     Document Root via PHP Script :: <i><u><?php getenv('DOCUMENT_ROOT');?></u></i>
     <hr/>
     Request URI is :: <i><u><?php echo $_SERVER['REQUEST_URI'] ;?></u></i>
+    <br/>
+    <b>HTTP Referrer </b> :: <i><u><?php echo $_SERVER['HTTP_REFERER'] ;?></u></i>
     <br/>
     First Index of "/" is : <i><u><?php echo strpos($_SERVER['REQUEST_URI'], "/", 1);?></u></i>
     <br/>

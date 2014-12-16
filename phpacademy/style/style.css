@@ -1,0 +1,35 @@
+body, table {
+	font-family: "Lucida Grande", "Calibri", "Verdana";
+	font-size: 13px;
+	color: navy;
+}
+
+th {
+	background-color: green;
+	color: white;
+	font-size: 14px;
+}
+
+.error {
+	color: red;
+}
+
+.note {
+	background-color: yellow;
+	color: black;
+}
+
+.warn {
+	background-color: red;
+	color: white;
+}
+
+.warn-box {
+	background-color: red;
+	color: white;
+	box-shadow: 10px 10px 5px #888888;
+}
+
+.footer {
+	color: slateGray;
+}

@@ -6,14 +6,22 @@
  * Time: 12:14 PM
  */
 
-require_once('../includes/connection.php');
+/*require_once('../includes/connection.php');
 include_once '../inc/header.php';
-require_once 'model/BankAcctBO.php';
+require_once 'model/BankAcctBO.php';*/
+
+require_once '../inc/header.php';
+require_once getDocumentRoot() . '/includes/connection.php';
+require_once getDocumentRoot() . '/model/BankAcctBO.php';
 
 /*
  * Version History
  * ===============
  * 1. 22 Nov 2014 Saturday - Initial Version
+ *
+ * 2. 07 Dec 2014 Sunday
+ * -----------------------
+ *      a. MVC-ized (moved $headerArrayForList to global.php)
  *
  */
 
@@ -26,14 +34,9 @@ function printTableHeaders()
 {
     echo "<table border=\"1\" cellspacing=\"2\" cellpadding=\"2\">";
 
-    /* Full List */
-    /*$fullHeaderArray = array("Id", "AcctNo", "AcctType", "Provider", "Bank", "Branch", "City", "ShortName", "CVV",
-        "ValidThru", "NameRegistered", "EmailRegistered", "MemberSince", "URL", "Remarks");*/
+    global $headerArrayForList;
 
-    $headerArray = array("Id", "AcctNo", "AcctType", "Provider", "Bank", "ShortName", "CVV",
-        "ValidThru", "NameRegistered", "MemberSince", "Remarks");
-
-    printTHData($headerArray);
+    printTHData($headerArrayForList);
 }
 
 function printTHData($thArray)
@@ -41,7 +44,7 @@ function printTHData($thArray)
     $thData = "<tr>";
 
     foreach ($thArray as $th) {
-        $th = ucwords($th);
+        $th = ucwords($th); //ucwords - to get the first letter of each word in Upper case
         $thData = $thData . "<th>" . $th . "</th>";
     }
 
@@ -52,11 +55,7 @@ function printTHData($thArray)
 
 function getCellData($data)
 {
-    if (empty($data)) {
-        $data = "&nbsp;";
-    }
-
-    return $data;
+    return getCellDataWithSpace($data, "Y");
 }
 
 function getRUDLink($data, $colName)

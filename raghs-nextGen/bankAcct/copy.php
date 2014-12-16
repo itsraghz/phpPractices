@@ -11,6 +11,8 @@
  * ===============
  * 1. 25 Nov 2014 Tuesday - Initial Version
  *
+ * 2. 07 Dec 2014 Sunday - MVC-ized
+ *
  */
 
 include_once '../inc/header.php';
@@ -18,7 +20,11 @@ require_once 'data/BankAcctDAO.php';
 
 ?>
     <header><h3>Account / Cards Management</h3></header>
-    <b>Copy</b> &nbsp;&nbsp; | &nbsp;&nbsp; <a class='grayed' href="index.php">Home</a>
+    <b>Copy</b>
+    &nbsp;&nbsp; | &nbsp;&nbsp;
+        <a class='grayed' href="index.php">Home</a>
+    &nbsp;&nbsp; | &nbsp;&nbsp;
+        <a class='grayed' href="<? echo $previous; ?>">Back</a>
     <br/><br/>
 <?php
 
@@ -34,8 +40,7 @@ if (isset($_GET['Id']) && !empty($_GET['Id'])) {
 
 function getData($id)
 {
-    $fullHeaderArray = array("AcctNo", "AcctType", "Provider", "Bank", "Branch", "City", "ShortName", "CVV",
-        "ValidThru", "NameRegistered", "EmailRegistered", "MemberSince", "URL", "Remarks");
+    global $fullHeaderArray;
 
     $bankAcctDAO = new BankAcctDAO();
 
@@ -54,96 +59,25 @@ function getData($id)
 
     if ($error == 0) {
         //echo "<pre>" , print_r($bankBO) . "</pre>";
-        echo getHTMLTableForData($bankBO, $fullHeaderArray);
+        echo getHTMLTableForDataForCopy($bankBO, $fullHeaderArray, "copy");
     } else {
         echo "<span class='error'>" . $errorMsg . "</span>";
         echo "<br/>";
     }
 }
 
-//@todo: reuse with list.php
-function getCellData($data)
-{
-    if (empty($data)) {
-        //$data = "&nbsp;";
-        $data = "";
-    }
-
-    return trim($data);
-}
-
-function getEditableTableData($dataObj, $name)
-{
-    //$data = $dataObj->dataArray[$name];
-    $data = $dataObj->$name;
-
-    $data = getCellData($data);
-
-    if (strcmp($name, "Id") != 0) {
-        $data = "<input type='text' name='" . $name . "' value='" . $data . "' size='50'";
-    }
-
-    $data .= " />";
-
-    return $data;
-}
-
 function getSubmitCancelBtns()
 {
-    $submitCancelTxt = "<tr>" .
-        "<td><input class='submit' type='submit' name='InsertAsNew' value='Insert As New'/> </td>" .
-        "<td><input class='reset' type='reset' name='Cancel' value='Cancel'/> </td>" .
-        "</tr>";
+    $submitBtnName = 'InsertAsNew';
+    global $submitBtnClass;
+    $submitBtnValue = "Insert As New";
+
+    $submitCancelTxt = getHTMLTableRowBegin().
+            getSubmitBtnWithHtmlTDCustom($submitBtnName, $submitBtnValue, $submitBtnClass).
+            getResetBtnWithHtmlTD() .
+        getHTMLTableRowClose();
 
     return $submitCancelTxt;
-}
-
-function getHTMLTableForData($dataObj, $fieldHeaderArray)
-{
-    $htmlTableBegin = "<table border=1 cellspacing=5 cellpadding=5>";
-    $htmlTableClose = "</table>";
-
-    $htmlTableData = "<form name='editAcctForm' method='post' action='insert.php'>";
-
-    $htmlTableData .= $htmlTableBegin;
-
-    $tableHeaderArray = array("Field", "Value");
-
-    $htmlTableData .= getTableHeaderRow($tableHeaderArray);
-
-    $htmlRowData = '';
-    foreach ($fieldHeaderArray as $fieldHeader) {
-        $htmlRowData .= "<tr>";
-
-        $htmlRowData .= "<td>" . $fieldHeader . "</td>";
-        $htmlRowData .= "<td>" . getEditableTableData($dataObj, $fieldHeader) . "</td>";
-
-        $htmlRowData .= "</tr>";
-    }
-
-    $htmlRowData .= getSubmitCancelBtns();
-
-    $htmlTableData .= $htmlRowData;
-
-    $htmlTableData .= $htmlTableClose;
-
-    $htmlTableData .= "</form>";
-
-    return $htmlTableData;
-
-}
-
-function getTableHeaderRow($headerArray)
-{
-    $tableHeaderData = '<tr>';
-
-    foreach ($headerArray as $header) {
-        $tableHeaderData .= "<th>" . $header . "</th>";
-    }
-
-    $tableHeaderData .= "</tr>";
-
-    return $tableHeaderData;
 }
 
 include_once '../inc/footer.php';
